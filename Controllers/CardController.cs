@@ -21,16 +21,19 @@ namespace MadiffTechnicalAssignment.Controllers
         {
             if (string.IsNullOrWhiteSpace(userId) || string.IsNullOrWhiteSpace(cardNumber))
             {
+                _logger.LogWarning("BadRequest: userId or cardNumber is missing");
                 return BadRequest("userId and cardNumber are required.");
             }
 
             var cardDetails = await _cardService.GetCardDetails(userId, cardNumber);
             if(cardDetails == null)
             {
+                _logger.LogWarning("NotFound: Card not found for userId='{userId}', cardNumber='{cardNumber}'", userId, cardNumber);
                 return NotFound("Card not found.");
             }
 
             var allowedActions = _cardService.GetAllowedCardActions(cardDetails);
+            _logger.LogInformation("Allowed actions retrieved for userId='{userId}', cardNumber='{cardNumber}'", userId, cardNumber);
 
             return Ok(allowedActions);
         }
