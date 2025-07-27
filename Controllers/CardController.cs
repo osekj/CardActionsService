@@ -19,6 +19,11 @@ namespace MadiffTechnicalAssignment.Controllers
         [HttpGet("getAllowedCardActions/{userId}/{cardNumber}")]
         public async Task<ActionResult> GetAllowedCardActionsAsync(string userId, string cardNumber)
         {
+            if (string.IsNullOrWhiteSpace(userId) || string.IsNullOrWhiteSpace(cardNumber))
+            {
+                return BadRequest("userId and cardNumber are required.");
+            }
+
             var cardDetails = await _cardService.GetCardDetails(userId, cardNumber);
             if(cardDetails == null)
             {
