@@ -52,6 +52,28 @@ namespace MadiffTechnicalAssignment
 
             app.MapControllers();
 
+            app.UseExceptionHandler(errorApp =>
+            {
+                errorApp.Run(async context =>
+                {
+                    var logger = context.RequestServices.GetRequiredService<ILogger<Program>>();
+                    context.Response.StatusCode = 500;
+                    context.Response.ContentType = "application/json";
+                    var error = context.Features.Get<Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature>();
+                    if (error != null)
+                    {
+                        logger.LogError(error.Error, "Unhandled exception occurred");
+                        var errorResponse = new
+                        {
+                            status = 500,
+                            message = "An unexpected error occurred."
+                        };
+                        var result = System.Text.Json.JsonSerializer.Serialize(errorResponse);
+                        await context.Response.WriteAsync(result);
+                    }
+                });
+            });
+
             app.Run();
         }
     }
