@@ -30,7 +30,7 @@ namespace MadiffTechnicalAssignment.Controllers
                 return NotFound("Card not found.");
             }
 
-            var allowedActions = _cardService.GetAllowedCardActionsAsync(cardDetails);
+            var allowedActions = _cardService.GetAllowedCardActions(cardDetails);
 
             return Ok(allowedActions);
         }

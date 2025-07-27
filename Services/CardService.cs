@@ -56,7 +56,7 @@ namespace MadiffTechnicalAssignment.Services
             return userCards;
         }
 
-        public IReadOnlyList<CardAction> GetAllowedCardActionsAsync(CardDetails cardDetails)
+        public IReadOnlyList<CardAction> GetAllowedCardActions(CardDetails cardDetails)
         {
             return _rulesEngine.GetAllowedActions(cardDetails);
         }

@@ -6,6 +6,6 @@ namespace MadiffTechnicalAssignment.Services
     public interface ICardService
     {
         Task<CardDetails?> GetCardDetails(string userId, string cardNumber);
-        IReadOnlyList<CardAction> GetAllowedCardActionsAsync(CardDetails cardDetails);
+        IReadOnlyList<CardAction> GetAllowedCardActions(CardDetails cardDetails);
     }
 }
