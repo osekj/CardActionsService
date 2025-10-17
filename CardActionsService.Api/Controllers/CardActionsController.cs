@@ -20,6 +20,11 @@ namespace CardActionsService.Api.Controllers
         [HttpGet("{userId}/{cardNumber}")]
         public async Task<ActionResult> GetAllowedActions([FromRoute] string userId, [FromRoute] string cardNumber, CancellationToken cancellationToken)
         {
+            if (string.IsNullOrWhiteSpace(userId) || string.IsNullOrWhiteSpace(cardNumber))
+            {
+                return BadRequest("User ID and Card Number must be provided.");
+            }
+
             _logger.LogInformation("Processing allowed actions request for user {UserId} and card {CardNumber}", userId, cardNumber);
 
             var allowedActions = await _cardActionsService.GetAllowedActionsAsync(
