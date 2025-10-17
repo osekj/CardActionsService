@@ -16,8 +16,4 @@
     <ProjectReference Include="..\CardActionsService.Infrastructure\CardActionsService.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DTOs\Requests\" />
-  </ItemGroup>
-
 </Project>
