@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CardActionsService.Api\CardActionsService.Api.csproj" />
+    <ProjectReference Include="..\..\src\CardActionsService.Domain\CardActionsService.Domain.csproj" />
   </ItemGroup>
 
 </Project>
